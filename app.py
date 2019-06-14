@@ -1,7 +1,7 @@
 import argparse
 import sys
 from flask import Flask
-from flask.ext.restful import reqparse, Api, Resource
+from flask_restful import reqparse, Api, Resource
 from decoder import Decoder
 from languages import new_lang_from_long_english_name
 from text import PreProcessor, PostProcessor

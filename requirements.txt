@@ -1,5 +1,0 @@
-flask
-flask-restful
-nltk
-mock
-argparse

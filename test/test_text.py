@@ -33,7 +33,7 @@ class TestPreProcessor(unittest.TestCase):
                 'realizado por Miguel Ángel entre 1498 y 1499 .',
                 encoding='utf-8'),
             unicode(
-                'Sus dimensiones son 174 por 195 cm .',
+                'Sus dimensiones son 174 por 195 cm.',
                 encoding='utf-8'),
             unicode(
                 'Se encuentra en la Basílica de San Pedro del Vaticano .',
@@ -51,7 +51,7 @@ class TestPreProcessor(unittest.TestCase):
                     'realizado por miguel ángel entre 1498 y 1499 .',
                     encoding='utf-8'),
                 unicode(
-                    'sus dimensiones son 174 por 195 cm .',
+                    'sus dimensiones son 174 por 195 cm.',
                     encoding='utf-8'),
                 unicode(
                     'se encuentra en la basílica de san pedro del vaticano .',
