@@ -29,4 +29,4 @@ EXPOSE 5000
 
 ENTRYPOINT ["./entrypoint.sh"]
 
-CMD ["test"]
+CMD ["pytest"]
