@@ -13,14 +13,19 @@ elif [ "$1" = 'es-test' ]; then
         --target-lang en\
         --port 8001 &
 
-    until curl http://localhost:5000; do
-        sleep 2
-    done
-
-    curl http://localhost:5000/joshua/translate/english \
+    sleep 2
+    curl http://localhost:5000/translate/english -iv \
         -H "Content-Type: application/json" \
         -X POST -d '{"inputLanguage": "Spanish", "inputText": "vuelo"}'
 
 else
+
+    pipenv run python app.py \
+        --bundle-dir "$MODELS_DIR/es-en/1/tune/model" \
+        --source-lang es \
+        --target-lang en\
+        --port 8001 &
+
     exec "$@"
+
 fi

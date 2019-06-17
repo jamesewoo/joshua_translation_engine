@@ -134,7 +134,7 @@ def handle_cli_args(argv):
 
 api.add_resource(
     TranslationEngine,
-    '/joshua/translate/<string:target_lang_code>'
+    '/translate/<string:target_lang_code>'
 )
 
 if __name__ == '__main__':
@@ -147,5 +147,4 @@ if __name__ == '__main__':
         lang_pair = (args.source_lang[idx], args.target_lang[idx])
         decoders[lang_pair] = decoder
 
-    app.run(debug=True, use_reloader=False)
-    #app.run()
+    app.run(debug=False, host="0.0.0.0")
