@@ -9,15 +9,19 @@ WORKDIR "$HOME/drogon-server"
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --no-install-recommends -y \
-        python-pip && \
-    rm -rf /var/lib/apt/lists/*
+        python-pip \
+        unzip && \
+    rm -rf /var/lib/apt/lists/* && \
+    curl -O https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip && \
+    unzip punkt.zip && \
+    rm punkt.zip && \
+    mkdir -p "$NLTK_DATA/tokenizers" && \
+    mv punkt "$NLTK_DATA/tokenizers/punkt"
 
 COPY Pipfile* ./
 
 RUN pip install pipenv && \
-    pipenv install -d && \
-    pipenv run \
-        python -m nltk.downloader -d $NLTK_DATA all
+    pipenv install -d
 
 COPY *.py entrypoint.sh README.md ./
 COPY config/nginx.conf /etc/nginx/
