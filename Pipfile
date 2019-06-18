@@ -12,6 +12,7 @@ mock = "*"
 argparse = "*"
 Flask = "*"
 Flask-RESTful = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "2.7"

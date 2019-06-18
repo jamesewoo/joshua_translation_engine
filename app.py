@@ -137,14 +137,18 @@ api.add_resource(
     '/translate/<string:target_lang_code>'
 )
 
-if __name__ == '__main__':
-
-    args = handle_cli_args(sys.argv)
+def create_app():
+    cmd_line = 'app.py --bundle-dir /models/es-en/1/tune/model --source-lang es --target-lang en --port 8001'.split()
+    args = handle_cli_args(cmd_line)
     for idx, bundle_confs in enumerate(zip(args.bundle_dir, args.port)):
         bundle, port = bundle_confs
         decoder = Decoder(bundle, port)
         decoder.start_decoder_server()
         lang_pair = (args.source_lang[idx], args.target_lang[idx])
         decoders[lang_pair] = decoder
+    return app
 
-    app.run(debug=False, host="0.0.0.0")
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(debug=False, host='0.0.0.0')

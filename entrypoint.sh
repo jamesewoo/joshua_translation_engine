@@ -20,12 +20,7 @@ elif [ "$1" = 'es-test' ]; then
 
 else
 
-    pipenv run python app.py \
-        --bundle-dir "$MODELS_DIR/es-en/1/tune/model" \
-        --source-lang es \
-        --target-lang en\
-        --port 8001 &
-
+    pipenv run gunicorn 'app:create_app()' &
     exec "$@"
 
 fi
