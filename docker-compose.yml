@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  nginx:
+    image: drogon:nginx
+    ports:
+      - "8080:80"
+    networks:
+      - webnet
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 4g
+      restart_policy:
+        condition: on-failure
+  webapp:
+    image: drogon:server
+    networks:
+      - webnet
+    volumes:
+      - type: bind
+        source: /var/lib/docker/volumes/es-en/_data
+        target: /models
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 4g
+      restart_policy:
+        condition: on-failure
+networks:
+  webnet:

@@ -24,12 +24,10 @@ RUN pip install pipenv && \
     pipenv install -d
 
 COPY *.py entrypoint.sh README.md ./
-COPY config/nginx.conf /etc/nginx/
 COPY html html
 COPY test test
 
-EXPOSE 80
+EXPOSE 8000
 
 ENTRYPOINT ["./entrypoint.sh"]
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["deploy"]

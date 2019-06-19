@@ -14,13 +14,12 @@ elif [ "$1" = 'es-test' ]; then
         --port 8001 &
 
     sleep 2
-    curl http://localhost:5000/translate/english -iv \
-        -H "Content-Type: application/json" \
-        -X POST -d '{"inputLanguage": "Spanish", "inputText": "vuelo"}'
+    curl http://localhost:5000/translate/english -iv -H "Content-Type: application/json" -X POST -d '{"inputLanguage": "Spanish", "inputText": "vuelo"}'
+
+elif [ "$1" = 'deploy' ]; then
+
+    pipenv run gunicorn -b "0.0.0.0:8000" --forwarded-allow-ips="*" "app:create_app()"
 
 else
-
-    pipenv run gunicorn 'app:create_app()' &
     exec "$@"
-
 fi
