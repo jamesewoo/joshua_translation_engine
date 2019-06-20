@@ -18,7 +18,7 @@ elif [ "$1" = 'es-test' ]; then
 
 elif [ "$1" = 'deploy' ]; then
 
-    pipenv run gunicorn -b "0.0.0.0:8000" --forwarded-allow-ips="*" "app:create_app()"
+    exec pipenv run gunicorn -b "0.0.0.0:8000" --forwarded-allow-ips="*" "app:create_app()"
 
 else
     exec "$@"
