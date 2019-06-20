@@ -27,7 +27,5 @@ COPY *.py entrypoint.sh README.md ./
 COPY html html
 COPY test test
 
-EXPOSE 8000
-
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["deploy"]
