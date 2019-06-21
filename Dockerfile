@@ -24,7 +24,6 @@ RUN pip install pipenv && \
     pipenv install -d
 
 COPY *.py entrypoint.sh run.conf README.md ./
-COPY html html
 COPY test test
 
 ENTRYPOINT ["./entrypoint.sh"]
