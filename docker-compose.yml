@@ -19,9 +19,7 @@ services:
     networks:
       - webnet
     volumes:
-      - type: bind
-        source: /var/lib/docker/volumes/es-en/_data
-        target: /models
+      - /models:/models
     deploy:
       replicas: 2
       resources:
@@ -30,5 +28,6 @@ services:
           memory: 4g
       restart_policy:
         condition: on-failure
+
 networks:
   webnet:

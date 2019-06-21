@@ -138,7 +138,10 @@ api.add_resource(
 )
 
 def create_app():
-    cmd_line = 'app.py --bundle-dir /models/es-en/1/tune/model --source-lang es --target-lang en --port 8001'.split()
+    with open('run.conf') as f:
+        read_data = f.read()
+
+    cmd_line = read_data.split()
     args = handle_cli_args(cmd_line)
     for idx, bundle_confs in enumerate(zip(args.bundle_dir, args.port)):
         bundle, port = bundle_confs
@@ -147,8 +150,3 @@ def create_app():
         lang_pair = (args.source_lang[idx], args.target_lang[idx])
         decoders[lang_pair] = decoder
     return app
-
-
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=False, host='0.0.0.0')
