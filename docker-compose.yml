@@ -2,6 +2,8 @@ version: "3.7"
 services:
   nginx:
     image: jwoo11/drogon:nginx
+    depends_on:
+      - webapp
     ports:
       - "8080:80"
     networks:
